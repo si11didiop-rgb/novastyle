@@ -5,18 +5,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>{{ config('app.name', 'NovaStyle') }}</title>
-
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=anton:400|inter:400,500,600,700&display=swap" rel="stylesheet" />
-
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @production
+            <link rel="stylesheet" href="/build/assets/app-Ba6c4dew.css">
+            <script src="/build/assets/app-BfpX1doZ.js" defer></script>
+        @else
+            @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @endproduction
     </head>
     <body class="font-body antialiased bg-nova-black text-nova-white">
         <div class="min-h-screen bg-nova-black flex flex-col">
             @include('layouts.navigation')
-
             <!-- Page Heading -->
             @isset($header)
                 <header class="bg-nova-surface border-b border-nova-line">
@@ -25,12 +27,10 @@
                     </div>
                 </header>
             @endisset
-
             <!-- Page Content -->
             <main class="flex-1">
                 {{ $slot }}
             </main>
-
             @include('layouts.footer')
         </div>
     </body>

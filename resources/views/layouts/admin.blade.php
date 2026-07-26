@@ -6,7 +6,12 @@
     <title>Admin — NovaStyle</title>
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=anton:400|inter:400,500,600,700&display=swap" rel="stylesheet" />
+    @production
+    <link rel="stylesheet" href="/build/assets/app-Ba6c4dew.css">
+    <script src="/build/assets/app-BfpX1doZ.js" defer></script>
+@else
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+@endproduction
 </head>
 <body class="bg-nova-black font-body">
     <div class="flex min-h-screen">
