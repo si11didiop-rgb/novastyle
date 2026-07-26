@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    h1, h2, h3 {
+        font-family: theme('fontFamily.display');
+        letter-spacing: 0.02em;
+    }
+}
+
+@layer components {
+    .btn-nova {
+        @apply bg-nova-red text-nova-white font-display uppercase tracking-wide px-6 py-3 hover:bg-nova-redDark transition-colors;
+    }
+
+    .card-nova {
+        @apply bg-nova-surface border border-nova-line hover:border-nova-red transition-colors;
+    }
+
+    .price-tag {
+        @apply inline-block bg-nova-red text-nova-white font-display px-3 py-1 text-sm;
+    }
+}
