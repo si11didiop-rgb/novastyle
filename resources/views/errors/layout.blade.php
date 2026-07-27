@@ -75,9 +75,9 @@
     </head>
     <body>
         <div class="container">
-            <a href="/" class="logo">NOVA<span>STYLE</span></a>
+            <a href="https://novastyle-production.up.railway.app" class="logo"></a>
             @yield('content')
-            <a href="/" class="btn">Retour à l'accueil</a>
+            <a href="https://novastyle-production.up.railway.app" class="btn">Retour à l'accueil</a>
         </div>
     </body>
 </html>
