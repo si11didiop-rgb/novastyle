@@ -5,12 +5,31 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use Cloudinary\Cloudinary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
     private array $availableSizes = ['S', 'M', 'L', 'XL', 'XXL'];
+
+    private function uploadToCloudinary($file): string
+    {
+        $cloudinary = new Cloudinary([
+            'cloud' => [
+                'cloud_name' => config('cloudinary.cloud_name'),
+                'api_key' => config('cloudinary.api_key'),
+                'api_secret' => config('cloudinary.api_secret'),
+            ],
+        ]);
+
+        $result = $cloudinary->uploadApi()->upload(
+            $file->getRealPath(),
+            ['folder' => 'novastyle/products']
+        );
+
+        return $result['secure_url'];
+    }
 
     public function index()
     {
@@ -42,10 +61,7 @@ class ProductController extends Controller
         $data['slug'] = Str::slug($data['name']).'-'.uniqid();
 
         if ($request->hasFile('image')) {
-            $result = cloudinary()->upload($request->file('image')->getRealPath(), [
-                'folder' => 'novastyle/products',
-            ]);
-            $data['image'] = $result->getSecurePath();
+            $data['image'] = $this->uploadToCloudinary($request->file('image'));
         }
 
         $sizes = $data['sizes'] ?? [];
@@ -90,10 +106,7 @@ class ProductController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $result = cloudinary()->upload($request->file('image')->getRealPath(), [
-                'folder' => 'novastyle/products',
-            ]);
-            $data['image'] = $result->getSecurePath();
+            $data['image'] = $this->uploadToCloudinary($request->file('image'));
         }
 
         $sizes = $data['sizes'] ?? [];
