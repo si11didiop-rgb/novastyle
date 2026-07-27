@@ -15,14 +15,12 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::with('category')->latest()->paginate(15);
-
         return view('admin.products.index', compact('products'));
     }
 
     public function create()
     {
         $categories = Category::all();
-
         return view('admin.products.create', [
             'categories' => $categories,
             'availableSizes' => $this->availableSizes,
@@ -44,14 +42,14 @@ class ProductController extends Controller
         $data['slug'] = Str::slug($data['name']).'-'.uniqid();
 
         if ($request->hasFile('image')) {
-            $filename = uniqid().'.'.$request->file('image')->getClientOriginalExtension();
-            $request->file('image')->move(public_path('images/products'), $filename);
-            $data['image'] = 'images/products/'.$filename;
+            $result = cloudinary()->upload($request->file('image')->getRealPath(), [
+                'folder' => 'novastyle/products',
+            ]);
+            $data['image'] = $result->getSecurePath();
         }
 
         $sizes = $data['sizes'] ?? [];
         unset($data['sizes']);
-
         $data['stock'] = array_sum(array_filter($sizes, fn ($v) => $v !== null));
 
         $product = Product::create($data);
@@ -72,7 +70,6 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $product->load('sizes');
-
         return view('admin.products.edit', [
             'product' => $product,
             'categories' => $categories,
@@ -93,14 +90,14 @@ class ProductController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $filename = uniqid().'.'.$request->file('image')->getClientOriginalExtension();
-            $request->file('image')->move(public_path('images/products'), $filename);
-            $data['image'] = 'images/products/'.$filename;
+            $result = cloudinary()->upload($request->file('image')->getRealPath(), [
+                'folder' => 'novastyle/products',
+            ]);
+            $data['image'] = $result->getSecurePath();
         }
 
         $sizes = $data['sizes'] ?? [];
         unset($data['sizes']);
-
         $data['stock'] = array_sum(array_filter($sizes, fn ($v) => $v !== null && $v !== ''));
 
         $product->update($data);
@@ -120,7 +117,6 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-
         return redirect()->route('admin.products.index')->with('success', 'Produit supprimé.');
     }
 }
