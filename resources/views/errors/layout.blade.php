@@ -77,9 +77,9 @@
     </head>
     <body>
         <div class="container">
-            <a href="{{ url('/') }}" class="logo">NOVA<span>STYLE</span></a>
+            <a href="{{ config('app.url') }}" class="logo">NOVA<span>STYLE</span></a>
             @yield('content')
-            <a href="{{ url('/') }}" class="btn">Retour à l'accueil</a>
+            <a href="{{ config('app.url') }}" class="btn">Retour à l'accueil</a>
         </div>
     </body>
 </html>
