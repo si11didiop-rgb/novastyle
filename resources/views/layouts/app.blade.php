@@ -28,5 +28,26 @@
             </main>
             @include('layouts.footer')
         </div>
+
+        <!-- Bandeau cookies -->
+<div
+    x-data="{ show: !localStorage.getItem('cookies_accepted') }"
+    x-show="show"
+    x-transition
+    class="fixed bottom-0 left-0 right-0 bg-nova-surface border-t border-nova-line p-4 z-50"
+>
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-sm text-nova-muted text-center sm:text-left">
+            NovaStyle utilise uniquement des cookies de session nécessaires au fonctionnement du site (panier, connexion). Aucun cookie publicitaire.
+            <a href="{{ route('privacy') }}" class="text-nova-red hover:underline">En savoir plus</a>
+        </p>
+        <button
+            @click="localStorage.setItem('cookies_accepted', '1'); show = false"
+            class="btn-nova text-sm whitespace-nowrap"
+        >
+            J'accepte
+        </button>
+    </div>
+</div>
     </body>
 </html>
