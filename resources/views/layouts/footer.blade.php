@@ -28,11 +28,12 @@
             <div>
                 <h3 class="font-display text-sm text-nova-white uppercase tracking-wide mb-4">Informations</h3>
                 <ul class="space-y-2 text-sm">
-    <li><a href="{{ route('livraison') }}" class="text-nova-muted hover:text-nova-red">Livraison & retours</a></li>
-    <li><a href="{{ route('cgv') }}" class="text-nova-muted hover:text-nova-red">CGV</a></li>
-    <li><a href="{{ route('mentions') }}" class="text-nova-muted hover:text-nova-red">Mentions légales</a></li>
-    <li><a href="{{ route('contact') }}" class="text-nova-muted hover:text-nova-red">Contact</a></li>
-</ul>
+                    <li><a href="{{ route('livraison') }}" class="text-nova-muted hover:text-nova-red">Livraison & retours</a></li>
+                    <li><a href="{{ route('cgv') }}" class="text-nova-muted hover:text-nova-red">CGV</a></li>
+                    <li><a href="{{ route('mentions') }}" class="text-nova-muted hover:text-nova-red">Mentions légales</a></li>
+                    <li><a href="{{ route('privacy') }}" class="text-nova-muted hover:text-nova-red">Politique de confidentialité</a></li>
+                    <li><a href="{{ route('contact') }}" class="text-nova-muted hover:text-nova-red">Contact</a></li>
+                </ul>
             </div>
 
             <!-- Newsletter -->
@@ -40,6 +41,7 @@
                 <h3 class="font-display text-sm text-nova-white uppercase tracking-wide mb-4">Newsletter</h3>
                 <p class="text-sm text-nova-muted mb-3">Sois informé des nouveautés et promos en avant-première.</p>
                 <form method="POST" action="#" class="flex">
+                    @csrf
                     <input type="email" placeholder="Ton email" class="flex-1 bg-nova-black border-nova-line text-nova-white placeholder-nova-muted text-sm focus:ring-nova-red focus:border-nova-red">
                     <button type="submit" class="bg-nova-red text-nova-white px-4 text-sm hover:bg-nova-redDark">
                         OK

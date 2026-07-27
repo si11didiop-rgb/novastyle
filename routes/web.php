@@ -26,16 +26,16 @@ Route::get('/produits/{slug}', [ProductController::class, 'show'])->name('produc
 
 /*
 |--------------------------------------------------------------------------
-| Contact (public)
+| Contact & Pages légales (public)
 |--------------------------------------------------------------------------
 */
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
-
 Route::get('/livraison', function () { return view('pages.livraison'); })->name('livraison');
 Route::get('/cgv', function () { return view('pages.cgv'); })->name('cgv');
 Route::get('/mentions-legales', function () { return view('pages.mentions'); })->name('mentions');
+Route::get('/politique-de-confidentialite', function () { return view('pages.privacy'); })->name('privacy');
 
 /*
 |--------------------------------------------------------------------------
