@@ -36,7 +36,7 @@
                     <a href="{{ route('products.show', $product->slug) }}" class="card-nova group block">
                         <div class="aspect-square bg-nova-black flex items-center justify-center overflow-hidden relative">
                             @if ($product->image)
-                                <img src="{{ asset('storage/'.$product->image) }}" alt="{{ $product->name }}" class="object-cover w-full h-full group-hover:scale-105 transition duration-300">
+                                <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="object-cover w-full h-full group-hover:scale-105 transition duration-300">
                             @else
                                 <span class="text-nova-muted text-sm">Pas d'image</span>
                             @endif
