@@ -74,7 +74,11 @@ class CheckoutController extends Controller
             return $order;
         });
 
-        auth()->user()->notify((new OrderConfirmed($order))->delay(now()->addSeconds(5)));
+        try {
+    auth()->user()->notify(new OrderConfirmed($order));
+} catch (\Exception $e) {
+    \Log::error('Email notification failed: '.$e->getMessage());
+}
 
         return redirect()->route('orders.show', $order)->with('success', 'Commande validée ! Un email de confirmation t\'a été envoyé.');
     }
