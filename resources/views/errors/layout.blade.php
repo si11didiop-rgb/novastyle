@@ -28,6 +28,8 @@
                 font-size: 2rem;
                 letter-spacing: 0.05em;
                 margin-bottom: 3rem;
+                text-decoration: none;
+                color: #F5F3EE;
             }
             .logo span { color: #E8261C; }
             .code {
@@ -75,9 +77,9 @@
     </head>
     <body>
         <div class="container">
-            <a href="https://novastyle-production.up.railway.app" class="logo"></a>
+            <a href="{{ url('/') }}" class="logo">NOVA<span>STYLE</span></a>
             @yield('content')
-            <a href="https://novastyle-production.up.railway.app" class="btn">Retour à l'accueil</a>
+            <a href="{{ url('/') }}" class="btn">Retour à l'accueil</a>
         </div>
     </body>
 </html>
