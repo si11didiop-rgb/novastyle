@@ -16,7 +16,7 @@
 
                 <div class="aspect-square bg-nova-black flex items-center justify-center">
                     @if ($product->image)
-                        <img src="{{ asset('storage/'.$product->image) }}" alt="{{ $product->name }}" class="object-cover w-full h-full">
+                        <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="object-cover w-full h-full">
                     @else
                         <span class="text-nova-muted">Pas d'image</span>
                     @endif

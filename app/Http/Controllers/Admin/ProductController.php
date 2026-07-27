@@ -44,7 +44,9 @@ class ProductController extends Controller
         $data['slug'] = Str::slug($data['name']).'-'.uniqid();
 
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('products', 'public');
+            $filename = uniqid().'.'.$request->file('image')->getClientOriginalExtension();
+            $request->file('image')->move(public_path('images/products'), $filename);
+            $data['image'] = 'images/products/'.$filename;
         }
 
         $sizes = $data['sizes'] ?? [];
@@ -91,7 +93,9 @@ class ProductController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('products', 'public');
+            $filename = uniqid().'.'.$request->file('image')->getClientOriginalExtension();
+            $request->file('image')->move(public_path('images/products'), $filename);
+            $data['image'] = 'images/products/'.$filename;
         }
 
         $sizes = $data['sizes'] ?? [];

@@ -26,7 +26,7 @@
                             <div class="flex items-center gap-4">
                                 <div class="w-16 h-16 bg-nova-black flex items-center justify-center overflow-hidden">
                                     @if ($item->product->image)
-                                        <img src="{{ asset('storage/'.$item->product->image) }}" class="object-cover w-full h-full">
+                                       <img src="{{ asset($item->product->image) }}" class="object-cover w-full h-full">
                                     @endif
                                 </div>
                                 <div>
