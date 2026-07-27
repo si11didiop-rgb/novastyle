@@ -11,12 +11,7 @@
         <link href="https://fonts.bunny.net/css?family=anton:400|inter:400,500,600,700&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
-        @production
-            <link rel="stylesheet" href="/build/assets/app-Ba6c4dew.css">
-            <script src="/build/assets/app-BfpX1doZ.js" defer></script>
-        @else
-            @vite(['resources/css/app.css', 'resources/js/app.js'])
-        @endproduction
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-body text-nova-white antialiased bg-nova-black">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
@@ -25,7 +20,6 @@
                     NOVA<span class="text-nova-red">STYLE</span>
                 </a>
             </div>
-
             <div class="w-full sm:max-w-md mt-6 px-6 py-6 card-nova">
                 {{ $slot }}
             </div>
